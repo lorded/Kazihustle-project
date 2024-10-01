@@ -39,7 +39,7 @@ foreach($transactions as $transaction)
         {
             
             $token_post_data = array(
-                'CompanyName' => 'Greenlife01',
+                'CompanyName' => 'mobipower',
                 'UserName' => 'Admin019',
                 'PassWord' => '123456',
                 'MeterId' => $transaction->meter,
@@ -60,7 +60,7 @@ foreach($transactions as $transaction)
             }
             
             //Send token info via SMS
-            $message = "Eco Solutions Token\n";
+            $message = "mobipower Token\n";
             $message .= "Mtr No: " .$transaction->meter . "\n";
             $message .= "Token Amount KShs: " . $transaction->amount . "\n";
             $message .= "Token: " . $token_details->Token . "\n";
