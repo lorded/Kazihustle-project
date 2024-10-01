@@ -1,0 +1,14 @@
+{
+    "require": {
+        "guzzlehttp/guzzle": "^7.4",
+        "africastalking/africastalking": "^3.0",
+        "nesbot/carbon": "^2.57",
+        "illuminate/database": "^8.83"
+    },
+    
+    "autoload": {
+       "classmap": [
+           "classes"
+       ]
+   }
+}

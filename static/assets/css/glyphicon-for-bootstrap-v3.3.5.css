@@ -1,8 +1,0 @@
-
-/*--------------------------------------------------------------------------
-	bootstrap-datetimepicker.js used here uses an old version of Bootstrap
-	the glyphivons uses old class-names
-	refer and copy class style of glyphicon classes on Bootstrap v3.3.5
---------------------------------------------------------------------------*/
-.icon-arrow-left:before{content:"\e091";}
-.icon-arrow-right:before{content:"\e092";}
