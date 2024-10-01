@@ -31,7 +31,7 @@ class Menu{
      */
     public function mainMenu(){
         //shows initial user menu for unregistered users
-        $response = "CON Welcome to Greenlife. Reply with\n";
+        $response = "CON Welcome to Mobipower. Reply with\n";
         $response .= "1. Buy Tokens\n";
         echo $response;
     }
@@ -143,7 +143,7 @@ class Menu{
             }
             
             $post_data = array(
-                'CompanyName' => 'Greenlife01',
+                'CompanyName' => 'mobipower',
                 //'UserName' => 'Quid vending',
                 'UserName' => 'Admin019',
                 'PassWord' => '123456',
@@ -166,7 +166,7 @@ class Menu{
 
             //Contact server and get customer details
             $post_data = array(
-                'CompanyName' => 'Greenlife01',
+                'CompanyName' => 'Mobipower',
                 //'UserName' => 'Quid vending',
                 'UserName' => 'Admin019',
                 'PassWord' => '123456',
@@ -251,7 +251,7 @@ class Menu{
 
         if(true == $stron_api_call)
         {
-            $post_data['CompanyName'] = 'Greenlife01';
+            $post_data['CompanyName'] = 'Mobipower';
             $post_data['UserName'] = 'Admin019';
             $post_data['PassWord'] = '123456';
         }
