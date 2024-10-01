@@ -10,11 +10,11 @@ class MpesaController
      */
     public function generate_token()
     {
-        $consumer_key="glOkub0auY0ISOCTGbrGGHCT9scCGy1U";
-        $consumer_secret="xx1N3WFbJmtlhIM9";
+        $consumer_key="MZlHPPmFh6jHesj7sVS2ntJXSrIHAT4Ht6rGPtgQocketnD7";
+        $consumer_secret="mHc5hLp9qyvgs2wJkRxxhd8B2BYHliqHKY0QnegAdq3iN3zmE2XreXHIRW1Za32F";
         $credentials = base64_encode($consumer_key.":".$consumer_secret);
 
-        $url = "https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
+        $url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: Basic ".$credentials));
@@ -34,8 +34,8 @@ class MpesaController
     public function lipa_na_mpesa_password()
     {
         $lipa_time = Carbon::rawParse('now')->format('YmdHms');
-        $passkey = "8fc2b436222174feae5c0dfb06f0847bb9d5d0fff4956760f0389ac843e64cfe";
-        $BusinessShortCode = 4087381;
+        $passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
+        $BusinessShortCode = 174379;
         $timestamp = $lipa_time;
         $lipa_na_mpesa_password = base64_encode($BusinessShortCode.$passkey.$timestamp);
         return $lipa_na_mpesa_password;
@@ -43,21 +43,21 @@ class MpesaController
 
     public function trigger_customer_stk_push($phone_number, $amount, $account_number)
     {
-        $url = 'https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
+        $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generate_token()));
         $curl_post_data = [
             //Fill in the request parameters with valid values
-            'BusinessShortCode' => 4087381,
+            'BusinessShortCode' => 174379,
             'Password' => $this->lipa_na_mpesa_password(),
             'Timestamp' => Carbon::rawParse('now')->format('YmdHms'),
             'TransactionType' => 'CustomerPayBillOnline',
             'Amount' => $amount,
             'PartyA' => $phone_number, // replace this with your phone number
-            'PartyB' => 4087381,
+            'PartyB' => 174379,
             'PhoneNumber' => $phone_number, // replace this with your phone number
-            'CallBackURL' => 'https://vendor.hostfiti.com',
+            'CallBackURL' => 'https://mobipower.shawntech.tech',
             'AccountReference' => $account_number,
             'TransactionDesc' => "Token Payment"
         ];
@@ -104,14 +104,14 @@ class MpesaController
      * */
      public function confirm_payment($checkout_request_id)
      {
-        $url = 'https://api.safaricom.co.ke/mpesa/stkpushquery/v1/query';
+        $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query';
         
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generate_token()));
         $curl_post_data = [
             //Fill in the request parameters with valid values
-            'BusinessShortCode' => 4087381,
+            'BusinessShortCode' => 174379,
             'Password' => $this->lipa_na_mpesa_password(),
             'Timestamp' => Carbon::rawParse('now')->format('YmdHms'),
             'CheckoutRequestID' => $checkout_request_id,
@@ -198,12 +198,12 @@ class MpesaController
     public function mpesa_register_urls()
     {
         $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, 'https://api.safaricom.co.ke/mpesa/c2b/v1/registerurl');
+        curl_setopt($curl, CURLOPT_URL, 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl');
         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization: Bearer '. $this->generate_token()));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode(array(
-            'ShortCode' => "4087381",
+            'ShortCode' => "174379",
             'ResponseType' => 'Completed',
             'ConfirmationURL' => "https://vendor.afoci.ga/public/api/payment/confirmation",
             'ValidationURL' => "https://vendor.afoci.ga/public/api/payment/validation"
@@ -212,3 +212,4 @@ class MpesaController
         echo $curl_response;
     }
 }
+
