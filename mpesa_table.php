@@ -11,4 +11,4 @@ Capsule::schema()->create('transactions', function ($table) {
        $table->string('phone');
        $table->integer('status')->default(0); // 1 - completed, 0 - not checked, 2 - failed
        $table->timestamps();
-   });
+   }); 
