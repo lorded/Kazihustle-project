@@ -10,8 +10,8 @@ class MpesaController
      */
     public function generate_token()
     {
-        $consumer_key="MZlHPPmFh6jHesj7sVS2ntJXSrIHAT4Ht6rGPtgQocketnD7";
-        $consumer_secret="mHc5hLp9qyvgs2wJkRxxhd8B2BYHliqHKY0QnegAdq3iN3zmE2XreXHIRW1Za32F";
+        $consumer_key="";
+        $consumer_secret="";
         $credentials = base64_encode($consumer_key.":".$consumer_secret);
 
         $url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
@@ -34,7 +34,7 @@ class MpesaController
     public function lipa_na_mpesa_password()
     {
         $lipa_time = Carbon::rawParse('now')->format('YmdHms');
-        $passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
+        $passkey = "";
         $BusinessShortCode = 174379;
         $timestamp = $lipa_time;
         $lipa_na_mpesa_password = base64_encode($BusinessShortCode.$passkey.$timestamp);
